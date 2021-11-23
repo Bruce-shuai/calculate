@@ -1,0 +1,66 @@
+*,
+*::before,
+*::after {
+  /* 为什么要这样写呢？*/
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(140deg, hsl(60, 100%, 50%), hsl(200, 100%, 50%));
+}
+
+.calculator-grid {
+  display: grid;
+  margin-top: 2em;
+  grid-template-columns: repeat(4, 6em);
+  grid-template-rows: minmax(7em, auto) repeat(5, 6em); /*  minmax(7em, auto) 为第一层的长度 */
+  justify-content: center;
+  height: 100vh;
+  align-content: center;
+}
+
+.span-2 {
+  grid-column: span 2;
+}
+
+/* >的效果是什么 */
+.calculator-grid > button {
+  font-size: 30px;
+  cursor: pointer;
+  border: 1px solid white;
+  outline: none;
+  background: hsla(0, 0%, 100%, 0.4);
+}
+
+/* 这里的选择器方式用得好 */
+.calculator-grid > button:hover {
+  background: hsla(0, 0%, 100%, 0.8);
+}
+.calculator-grid > button:active {
+  transform: scale(0.98);
+}
+
+.output {
+  grid-column: span 4; /* grid-column: 1/-1 这样的写法也是可以的 */
+  background-color: hsla(200, 80%, 20%, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 0.75em;
+
+  /* 这两个属性很有意思 */
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.output .previous-operand {
+  color: hsla(0, 0%, 100%, 0.85);
+  font-size: 22px;
+}
+
+.output .current-operand {
+  color: hsl(0, 0%, 100%);
+  font-size: 42px;
+}
